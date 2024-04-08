@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Медичний реєстр</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Медичний реєстр</h1>
+
+            <!-- Вкладки для переключення між сторінками -->
+            <div class="tabs">
+                <button onclick="openTab('createPatient')">Створити пацієнта</button>
+                <button onclick="openTab('viewPatients')">Список пацієнтів</button>
+                <button onclick="openTab('createDoctor')">Додати лікаря</button>
+                <button onclick="openTab('viewDoctors')">Список лікарів</button>
+                <button onclick="openTab('appointments')">Записи на візит</button>
+                <button onclick="openTab('appointmentsByDate')">Записи на дату</button>
+            </div>
+
+
+            <!-- Сторінка створення пацієнта -->
+            <div id="createPatient" class="tab-content">
+                <h2>Додати нового пацієнта</h2>
+                <input type="text" id="patientFirstName" placeholder="Ім'я" required>
+                <input type="text" id="patientLastName" placeholder="Прізвище" required>
+                <input type="tel" id="patientPhoneNumber" placeholder="Номер телефону" required>
+                <input type="text" id="patientAddress" placeholder="Адреса" required>
+                <textarea id="patientMedicalHistory" placeholder="Історія захворювань"></textarea>
+                <button onclick="savePatient()">Зберегти</button>
+            </div>
+
+            <!-- Сторінка перегляду списку пацієнтів -->
+            <div id="viewPatients" class="tab-content">
+                <h2>Список пацієнтів</h2>
+                <table id="patientsList">
+                    <thead>
+                        <tr>
+                            <th>Ім'я</th>
+                            <th>Прізвище</th>
+                            <th>Номер телефону</th>
+                            <th>Адреса</th>
+                            <th>Історія захворювань</th>
+                            <th>Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Сюди будуть додаватися пацієнти -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Сторінка створення лікаря -->
+            <div id="createDoctor" class="tab-content">
+                <h2>Додати нового лікаря</h2>
+                <input type="text" id="doctorFirstName" placeholder="Ім'я" required>
+                <input type="text" id="doctorLastName" placeholder="Прізвище" required>
+                <input type="text" id="doctorSpecialty" placeholder="Спеціальність" required>
+                <input type="text" id="doctorOffice" placeholder="Кабінет" required>
+                <input type="tel" id="doctorPhoneNumber" placeholder="Номер телефону" required>
+                <button onclick="saveDoctor()">Зберегти</button>
+            </div>
+
+            <!-- Сторінка перегляду списку лікарів -->
+            <div id="viewDoctors" class="tab-content">
+                <h2>Список лікарів</h2>
+                <table id="doctorsList">
+                    <thead>
+                        <tr>
+                            <th>Ім'я</th>
+                            <th>Прізвище</th>
+                            <th>Професія</th>
+                            <th>Кабінет</th>
+                            <th>Номер телефону</th>
+                            <th>Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Сюди будуть додаватися лікарі -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Сторінка записів на візит -->
+            <div id="appointments" class="tab-content">
+                <h2>Запис на візит до лікаря</h2>
+                <label for="selectDoctor">Виберіть лікаря:</label>
+                <select id="selectDoctor">
+                    <!-- Опції для вибору лікаря -->
+                </select>
+                <br>
+                <label for="selectPatient">Виберіть пацієнта:</label>
+                <select id="selectPatient">
+                    <!-- Опції для вибору пацієнта -->
+                </select>
+                <br>
+                <label for="visitDate">Дата візиту:</label>
+                <input type="date" id="visitDate" required>
+                <br>
+                <button onclick="scheduleAppointment()">Записатись на візит</button>
+            </div>
+
+            <!-- Сторінка записів на конкретну дату -->
+            <div id="appointmentsByDate" class="tab-content">
+                <h2>Записи на обрану дату</h2>
+                <label for="selectAppointmentDate">Виберіть дату:</label>
+                <input type="date" id="selectAppointmentDate" onchange="displayAppointmentsByDate()">
+                <br>
+                <table id="appointmentsByDateTable">
+                    <thead>
+                        <tr>
+                            <th>Лікар</th>
+                            <th>Пацієнт</th>
+                            <th>Дата візиту</th>
+                            <th>Історія захворювань</th>
+                            <th>Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointmentsByDateBody">
+                        <!-- Сюди будуть додаватися записи -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
